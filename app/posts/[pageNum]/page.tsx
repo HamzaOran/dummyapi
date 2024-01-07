@@ -89,7 +89,7 @@ const PostsPage = ({ params }: { params: { pageNum: string } }) => {
 
   return (
     <div className="flex bg-gray-100">
-      <div className="w-1/2 p-4 bg-white">
+      <div className="w-1/4 p-4 bg-white">
         <h2 className="text-2xl font-semibold mb-4">Posts</h2>
         <ul>
           {posts.map((post) => (
@@ -124,32 +124,28 @@ const PostsPage = ({ params }: { params: { pageNum: string } }) => {
       </div>
 
       {selectedPost && (
-        <div className="w-1/2 p-4 flex flex-col items-center justify-center">
-          <h2 className="text-2xl font-semibold mb-2">
-            Selected Post Information
-          </h2>
-          <p>ID: {selectedPost.id}</p>
-          <p>Text: {selectedPost.text}</p>
-          <p>Likes: {selectedPost.likes}</p>
-          <p>Publish Date: {selectedPost.publishDate}</p>
-          <p>Link: {selectedPost.link}</p>
-          <p>Tags: {selectedPost.tags.join(', ')}</p>
-          <div>
-            <p>
+        <div className="w-3/4 p-4 flex flex-col items-center justify-center">
+          <h2 className="text-4xl font-semibold mb-4">{selectedPost.text}</h2>
+          <img
+            src={selectedPost.image}
+            alt={`Post ${selectedPost.id}`}
+            className="object-cover w-96 h-96 mt-2 rounded-lg"
+          />
+          <div className="flex flex-col justify-center items-center mt-4">
+            <p className="text-lg">
               Owner:{' '}
               {`${selectedPost.owner.firstName} ${selectedPost.owner.lastName}`}
             </p>
             <img
               src={selectedPost.owner.picture}
               alt={`Owner ${selectedPost.owner.id}`}
-              className="w-10 h-10 rounded-full"
+              className="w-20 h-20 rounded-full mt-2"
             />
           </div>
-          <img
-            src={selectedPost.image}
-            alt={`Post ${selectedPost.id}`}
-            className="w-32 h-32 mt-2"
-          />
+          <p className="mt-4">Link: {selectedPost.link}</p>
+          <p>{selectedPost.publishDate}</p>
+          <p>Likes: {selectedPost.likes}</p>
+          <p>Tags: {selectedPost.tags.join(', ')}</p>
         </div>
       )}
     </div>

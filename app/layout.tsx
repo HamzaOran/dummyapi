@@ -18,9 +18,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={`min-h-screen flex flex-col justify-center ${inter.className}`}
+      >
         <Navbar />
-        {children}
+
+        <main className="container mx-auto my-16 flex-1 ">{children}</main>
+
         <Footer />
       </body>
     </html>

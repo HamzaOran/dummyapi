@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
-let currentLevel: {
+export type Post = {
   text: string;
   image: string;
   link: string;
@@ -18,23 +19,16 @@ let currentLevel: {
   };
 };
 
-const CreatePost = () => {
+const CreatePost = ({ params }: { params: { userId: string } }) => {
   const [postData, setPostData] = useState({
     text: '',
     image: '',
-
-    link: '',
+    likes: 0,
     tags: '',
-    owner: {
-      ownerId: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      title: '',
-      picture: '',
-    },
+    owner: params.userId,
   });
 
+  const router = useRouter();
   const setNewValue = (id_: string, newValue: string | number) => {
     const newState = { ...postData };
 
@@ -42,9 +36,11 @@ const CreatePost = () => {
 
     let currentLevel = newState;
     for (let i = 0; i < keys.length - 1; i++) {
+      // @ts-ignore
       currentLevel = currentLevel[keys[i]];
     }
 
+    // @ts-ignore
     currentLevel[keys[keys.length - 1]] = newValue;
 
     setPostData(newState);
@@ -53,15 +49,12 @@ const CreatePost = () => {
   const createPost = async () => {
     try {
       const apiUrl = 'https://dummyapi.io/data/v1/post/create';
-      const headers = { 'app-id': '6596f3312dcb12a26baf0c7d' };
+      const headers = { 'app-id': process.env.NEXT_PUBLIC_API_KEY };
 
       const tagsArray = postData.tags.split(',').map((tag) => tag.trim());
 
       const postDataWithOwner = {
         ...postData,
-        owner: {
-          ...postData.owner,
-        },
         tags: tagsArray,
       };
 
@@ -70,6 +63,7 @@ const CreatePost = () => {
       });
 
       alert(`Post created! ID: ${response.data.id}`);
+      router.push(`/postdetail/${response.data.id}`);
     } catch (error) {
       console.error('Error creating post:', error);
       alert('Error creating post. Please check the console for details.');
@@ -80,8 +74,8 @@ const CreatePost = () => {
     return Math.random().toString(36).substr(2, 9);
   };
   return (
-    <div className="flex justify-center items-center  bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-lg w-96">
+    <div className="flex justify-center items-center  bg-white">
+      <div className="bg-gray-100 p-8 rounded shadow-lg w-96">
         <ul className="list-none mb-4">
           <li>
             <input
@@ -104,49 +98,9 @@ const CreatePost = () => {
           <li>
             <input
               className="border border-black p-3 rounded w-full"
-              placeholder="Owner First Name"
-              value={postData.owner.firstName}
-              onChange={(evt) =>
-                setNewValue('owner.firstName', evt.target.value)
-              }
-            />
-          </li>
-
-          <li>
-            <input
-              className="border border-black p-3 rounded w-full"
-              placeholder="Owner Last Name"
-              value={postData.owner.lastName}
-              onChange={(evt) =>
-                setNewValue('owner.lastName', evt.target.value)
-              }
-            />
-          </li>
-
-          <li>
-            <input
-              className="border border-black p-3 rounded w-full"
-              placeholder="Owner Email"
-              value={postData.owner.email}
-              onChange={(evt) => setNewValue('owner.email', evt.target.value)}
-            />
-          </li>
-
-          <li>
-            <input
-              className="border border-black p-3 rounded w-full"
-              placeholder="Owner Title"
-              value={postData.owner.title}
-              onChange={(evt) => setNewValue('owner.title', evt.target.value)}
-            />
-          </li>
-
-          <li>
-            <input
-              className="border border-black p-3 rounded w-full"
-              placeholder="Owner Picture URL"
-              value={postData.owner.picture}
-              onChange={(evt) => setNewValue('owner.picture', evt.target.value)}
+              placeholder="Likes"
+              value={postData.likes}
+              onChange={(evt) => setNewValue('likes', evt.target.value)}
             />
           </li>
 

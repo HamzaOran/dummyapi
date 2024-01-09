@@ -5,10 +5,15 @@ type PaginationPropsType = {
   toplam: number;
   id: number;
   base: string;
+  eleman?: number;
 };
 
-export default function Pagination({ toplam, id, base }: PaginationPropsType) {
-  const eleman = 20;
+export default function Pagination({
+  toplam,
+  id,
+  base,
+  eleman = 20,
+}: PaginationPropsType) {
   const toplamSayfa = Math.ceil(toplam / eleman);
   const oncekiSayfa = id - 1;
   const sonrakiSayfa = id + 1;
@@ -47,12 +52,8 @@ export default function Pagination({ toplam, id, base }: PaginationPropsType) {
       <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
         <div>
           <p className="text-sm leading-5 text-gray-700">
-            Toplam{' '}
-            <span className="font-medium">
-              {toplam.toLocaleString('tr-TR')}
-            </span>{' '}
-            sonucun <span className="font-medium">{(id - 1) * eleman + 1}</span>{' '}
-            ile{' '}
+            Toplam <span className="font-medium">{toplam}</span> sonucun{' '}
+            <span className="font-medium">{(id - 1) * eleman + 1}</span> ile{' '}
             <span className="font-medium">
               {id * eleman >= toplam ? toplam : id * eleman}
             </span>{' '}

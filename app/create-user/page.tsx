@@ -3,16 +3,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-type User = {
+export type User = {
+  id: string;
   firstName: string;
   lastName: string;
   email: string;
   title: string;
   picture: string;
   gender: string;
+  registerDate: string;
+  updatedDate: string;
 };
 
-export default function Home() {
+export default function CreateUser() {
   const [user, setUser] = useState<User>({
     firstName: '',
     lastName: '',
@@ -20,10 +23,13 @@ export default function Home() {
     title: '',
     picture: '',
     gender: '',
+    id: '',
+    registerDate: '',
+    updatedDate: '',
   });
 
   const urlDummyPost = `https://dummyapi.io/data/v1/user/create`;
-  const header_ = { 'app-id': '6596f3312dcb12a26baf0c7d' };
+  const header_ = { 'app-id': process.env.NEXT_PUBLIC_API_KEY };
 
   const setNewValue = (
     id_: string,
@@ -35,14 +41,14 @@ export default function Home() {
       const headers_ = { headers: header_ };
       const response = await axios.post(urlDummyPost, user, headers_);
       alert(`The response is: ${response.data.id}`);
-    } catch (exception_) {
+    } catch (exception_: any) {
       alert(`There was an error: ${JSON.stringify(exception_.response.data)}`);
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-lg w-96">
+    <div className="flex justify-center items-center  bg-white">
+      <div className="bg-gray-100 p-8 rounded shadow-lg w-96">
         <ul className="list-none mb-4">
           <li>
             <input
@@ -122,7 +128,7 @@ export default function Home() {
             createAnUser();
           }}
         >
-          Send to the API
+          Create User
         </button>
       </div>
     </div>

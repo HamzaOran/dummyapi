@@ -16,6 +16,9 @@ const Navbar = () => {
           <Link href="/posts" className="text-white">
             Posts
           </Link>
+          <Link href="/tags" className="text-white">
+            Tags
+          </Link>
         </div>
       </div>
     </nav>

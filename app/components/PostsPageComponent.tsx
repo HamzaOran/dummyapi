@@ -92,7 +92,7 @@ export default function PostsPageComponent({
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-white">
+    <div className="flex justify-center items-center  bg-white">
       <div className="max-w-4xl p-4 bg-gray-100 shadow-lg rounded-md">
         <h2 className="text-3xl flex justify-center font-semibold mb-4">
           Posts

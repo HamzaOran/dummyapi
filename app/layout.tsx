@@ -23,7 +23,7 @@ export default function RootLayout({
       >
         <Navbar />
 
-        <main className="container mx-auto my-16 flex-1 ">{children}</main>
+        <main className="container mx-auto my-4 flex-1 ">{children}</main>
 
         <Footer />
       </body>

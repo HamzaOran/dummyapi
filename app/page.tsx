@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col md:flex-row bg-gray-100 justify-center items-center h-96">
+    <div className="flex flex-col md:flex-row bg-gray-100 justify-center items-center my-20 h-96">
       <div className="text-center">
         <h1 className="text-5xl font-bold mb-8">
           Welcome to Next.js Dummy App

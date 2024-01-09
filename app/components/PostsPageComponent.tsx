@@ -5,6 +5,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import Pagination from '@/app/components/Pagination';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export type Post = {
   id: string;
@@ -106,7 +107,7 @@ export default function PostsPageComponent({
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   {isImageValid(post.owner.picture) && (
-                    <img
+                    <Image
                       src={post.owner.picture}
                       alt={`Owner ${post.owner.id}`}
                       className="w-10 h-10 rounded-full mr-2"
@@ -136,7 +137,7 @@ export default function PostsPageComponent({
                   </div>
                 </div>
                 {isImageValid(post.image) && (
-                  <img
+                  <Image
                     src={post.image}
                     alt={`Post ${post.id}`}
                     className="w-32 h-32 object-cover rounded"

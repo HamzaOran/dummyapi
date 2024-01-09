@@ -50,17 +50,16 @@ export default function TagsPage() {
   }
   return (
     <div className="flex justify-center items-center min-h-screen bg-white">
-      <div className="max-w-4xl p-8 bg-gray-200 shadow-lg rounded-md">
+      <div className="w-full sm:w-11/12 md:w-4/5 lg:w-3/4 xl:w-2/3 max-w-4xl p-8 bg-gray-200 shadow-lg rounded-md">
         <h2 className="text-3xl text-center font-semibold mb-6">Tags List</h2>
 
-        {/* Search bar */}
-        <div className="flex items-center justify-center mb-4 ">
+        <div className="flex items-center justify-center mb-4">
           <input
             type="text"
             placeholder="Search tags..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="p-2 border rounded w-64"
+            className="p-2 border rounded w-full sm:w-64"
           />
         </div>
 

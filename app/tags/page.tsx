@@ -48,31 +48,30 @@ export default function TagsPage() {
       </div>
     );
   }
-
   return (
     <div className="flex justify-center items-center min-h-screen bg-white">
-      <div className="max-w-4xl p-4 bg-gray-100 shadow-lg rounded-md">
-        <h2 className="text-3xl flex justify-center font-semibold mb-4">
-          Tags List
-        </h2>
+      <div className="max-w-4xl p-8 bg-gray-200 shadow-lg rounded-md">
+        <h2 className="text-3xl text-center font-semibold mb-6">Tags List</h2>
 
         {/* Search bar */}
-        <input
-          type="text"
-          placeholder="Search tags..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="mb-4 p-2 border rounded"
-        />
+        <div className="flex items-center justify-center mb-4 ">
+          <input
+            type="text"
+            placeholder="Search tags..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="p-2 border rounded w-64"
+          />
+        </div>
 
         <ul>
           {filteredTags.map((tag, index) => (
             <li
               key={index}
-              className="cursor-pointer border-b py-2 hover:bg-gray-300 transition-all duration-300"
+              className="cursor-pointer border-slate-400 py-3 hover:bg-gray-400 transition-all duration-300"
             >
               <Link href={`/tagdetail/${tag.trim()}`}>
-                <p className="text-lg font-semibold">{tag}</p>
+                <p className="text-lg font-semibold ">{tag}</p>
               </Link>
             </li>
           ))}

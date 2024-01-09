@@ -140,7 +140,7 @@ export default function PostsPageComponent({
                   <img
                     src={post.image}
                     alt={`Post ${post.id}`}
-                    className="w-20 h-20 object-cover rounded"
+                    className="w-32 h-32 object-cover rounded"
                   />
                 )}
               </div>

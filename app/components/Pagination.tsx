@@ -33,7 +33,7 @@ export default function Pagination({
             oncekiVarMi && 'pointer-events-none'
           }`}
         >
-          Önceki
+          Previous
         </Link>
 
         <Link
@@ -46,18 +46,19 @@ export default function Pagination({
             !sonrakiVarMi && 'pointer-events-none'
           }`}
         >
-          Sonraki
+          Next
         </Link>
       </div>
       <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
         <div>
           <p className="text-sm leading-5 text-gray-700">
-            Toplam <span className="font-medium">{toplam}</span> sonucun{' '}
-            <span className="font-medium">{(id - 1) * eleman + 1}</span> ile{' '}
+            Total <span className="font-medium">{toplam}</span> results are
+            shown between{' '}
+            <span className="font-medium">{(id - 1) * eleman + 1}</span> and{' '}
             <span className="font-medium">
               {id * eleman >= toplam ? toplam : id * eleman}
-            </span>{' '}
-            arası gösteriliyor.
+            </span>
+            .
           </p>
         </div>
         <div>
@@ -71,7 +72,7 @@ export default function Pagination({
               } focus:z-10 focus:outline-none active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150 ${
                 oncekiVarMi && 'pointer-events-none'
               }`}
-              aria-label="Önceki"
+              aria-label="Previous"
             >
               <svg
                 className="h-5 w-5"
@@ -112,7 +113,7 @@ export default function Pagination({
               } focus:z-10 focus:outline-none active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150 ${
                 !sonrakiVarMi && 'pointer-events-none'
               }`}
-              aria-label="Sonraki"
+              aria-label="Next"
             >
               <svg
                 className="h-5 w-5"

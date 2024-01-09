@@ -70,9 +70,6 @@ const CreatePost = ({ params }: { params: { userId: string } }) => {
     }
   };
 
-  const generateUniqueId = () => {
-    return Math.random().toString(36).substr(2, 9);
-  };
   return (
     <div className="flex justify-center items-center  bg-white">
       <div className="bg-gray-100 p-8 rounded shadow-lg w-96">

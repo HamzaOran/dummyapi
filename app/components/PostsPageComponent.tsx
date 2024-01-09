@@ -101,7 +101,6 @@ export default function PostsPageComponent({
           {posts.map((post) => (
             <li
               key={post.id}
-              //onClick={() => handlePostClick(post.id)}
               className={`border-b py-2 transition-all duration-300`}
             >
               <div className="flex items-center justify-between">

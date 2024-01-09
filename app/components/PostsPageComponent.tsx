@@ -93,21 +93,19 @@ export default function PostsPageComponent({
   }
 
   return (
-    <div className="flex justify-center items-center  bg-white">
-      <div className="max-w-4xl p-4 bg-gray-100 shadow-lg rounded-md">
-        <h2 className="text-3xl flex justify-center font-semibold mb-4">
-          Posts
-        </h2>
+    <div className="flex justify-center items-center bg-white min-h-screen">
+      <div className="w-full md:max-w-4xl p-4 bg-gray-100 shadow-lg rounded-md">
+        <h2 className="text-3xl text-center font-semibold mb-4">Posts</h2>
         <ul>
           {posts.map((post) => (
             <li
               key={post.id}
-              className={`border-b py-2 transition-all duration-300`}
+              className={`border-b py-2 md:py-4 transition-all duration-300`}
             >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
+              <div className="flex flex-col md:flex-row items-center md:justify-between">
+                <div className="flex items-center mb-2 md:mb-0">
                   {isImageValid(post.owner.picture) && (
-                    <Image
+                    <img
                       src={post.owner.picture}
                       alt={`Owner ${post.owner.id}`}
                       className="w-10 h-10 rounded-full mr-2"
@@ -120,14 +118,14 @@ export default function PostsPageComponent({
                     >
                       {post.text}
                     </Link>
-                    <div className="flex space-x-2">
+                    <div className="flex space-x-2 mt-1">
                       {post.tags.map(
                         (tag) =>
                           tag && (
                             <Link
                               key={tag}
                               href={`/tagdetail/${tag}`}
-                              className="bg-blue-500 hover:bg-blue-700 text-white px-2 py-1 rounded"
+                              className="bg-blue-500 hover:bg-blue-700 text-white px-2 py-1 rounded text-xs md:text-sm"
                             >
                               {tag}
                             </Link>
@@ -137,10 +135,10 @@ export default function PostsPageComponent({
                   </div>
                 </div>
                 {isImageValid(post.image) && (
-                  <Image
+                  <img
                     src={post.image}
                     alt={`Post ${post.id}`}
-                    className="w-32 h-32 object-cover rounded"
+                    className="w-full md:w-32 h-32 object-cover rounded"
                   />
                 )}
               </div>
@@ -148,7 +146,7 @@ export default function PostsPageComponent({
           ))}
         </ul>
 
-        <div>
+        <div className="mt-4">
           <Pagination
             toplam={total}
             id={parseInt(pageNum) || 1}
